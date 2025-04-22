@@ -16,9 +16,9 @@ public class AddCourseServlet extends HttpServlet {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ejproj", "root", "root");
 
             // Insert into subjects list
-            //PreparedStatement ps = con.prepareStatement("INSERT INTO subjects (name) VALUES (?)");
-            //ps.setString(1, newCourse);
-            //ps.executeUpdate();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO subjects (name) VALUES (?)");
+            ps.setString(1, newCourse);
+            ps.executeUpdate();
 
             // Create a new table for the course
             Statement stmt = con.createStatement();

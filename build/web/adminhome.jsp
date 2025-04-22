@@ -1,4 +1,4 @@
-
+ <%@ page import="java.sql.*, java.util.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,13 +42,35 @@ nav {
                 <p>Please Select the Subject which you want to add questions to:
                 </p>
                   <form action="adminhome.jsp" method="POST">
-                      
+                     
+<%
+    List<String> subjectList = new ArrayList<>();
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ejproj", "root", "root");
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT name FROM subjects");
+        while (rs.next()) {
+            subjectList.add(rs.getString("name"));
+        }
+        con.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+  //  request.setAttribute("subjectList", subjectList);
+%>
                 <p>
                   <select name="examsubject">
-                      <option name="py" value="Python">Python</option>
-                      <option name="c" value="c">C</option>          
+                      <%
+                          for(int i=0;i<subjectList.size();i++)
+                          {
+                      %>
+                       <option name="<%=subjectList.get(i)%>" value="<%=subjectList.get(i)%>"><%=subjectList.get(i)%></option>
+                       <%}%>
+                                
                   </select>        
                 </p>
+                
                 <input type="submit" value="Select Exam"><br/><br/>
                  <%
                      String examtype = (String)request.getParameter("examsubject");
