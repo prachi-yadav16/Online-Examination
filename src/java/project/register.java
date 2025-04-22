@@ -55,7 +55,7 @@ public class register extends HttpServlet {
             Connection con = null;
             PreparedStatement preparedStatement= null;
            
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
            
             try{
             

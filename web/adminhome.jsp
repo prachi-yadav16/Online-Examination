@@ -30,7 +30,7 @@ nav {
 
 </head>
 <body>
-    <form action="adminhome.jsp" method="POST"> 
+    <!--<form action="adminhome.jsp" method="POST">--> 
         <jsp:include page="adminnavbar.jsp" />
 
         <main role="main">
@@ -41,6 +41,8 @@ nav {
                 </p>
                 <p>Please Select the Subject which you want to add questions to:
                 </p>
+                  <form action="adminhome.jsp" method="POST">
+                      
                 <p>
                   <select name="examsubject">
                       <option name="py" value="Python">Python</option>
@@ -52,9 +54,15 @@ nav {
                      String examtype = (String)request.getParameter("examsubject");
                      session.setAttribute("examsubject", examtype);
                  %>
+                 
                  <p>Examination Subject to Edit: <b>${examsubject}</b></p>
+                 </form>
                  <p>Once you have selected an exam to edit click on "Set Examination" to either add questions to the examination or view the exam</p>
-                </div>
+              <form method="post" action="AddCourseServlet">
+    <input type="text" name="newCourse" placeholder="Add new course" />
+    <button type="submit">Add Course</button>
+</form>  
+              </div>
                 </div>
   
                 <div class="container">
@@ -86,6 +94,6 @@ Secure and Reliable: Ensuring exam integrity with authentication mechanisms and 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script>
 
-    </form>
+    <!--</form>-->
 </body>
 </html>

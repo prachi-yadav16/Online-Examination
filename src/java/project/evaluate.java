@@ -49,7 +49,7 @@ public class evaluate extends HttpServlet {
          response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
              try {
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }

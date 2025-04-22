@@ -49,7 +49,7 @@ public class login extends HttpServlet {
             PreparedStatement ps = null;
             ResultSet rs = null;
             
-            String driverName="com.mysql.jdbc.Driver";
+            String driverName="com.mysql.cj.jdbc.Driver";
             String url = "jdbc:mysql://localhost:3306/ejproj";
             String dbuser = "root";
             String dbpass = "root";
