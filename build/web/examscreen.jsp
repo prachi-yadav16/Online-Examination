@@ -1,4 +1,10 @@
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,10 +69,34 @@ nav {
                 </p>
                 <p>Please Select the Exam You Would like to take:
                 </p>
+                                     
+<%
+    List<String> subjectList = new ArrayList<>();
+    List<String> subjectDatabase = new ArrayList<>();
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ejproj", "root", "root");
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM subjects");
+        while (rs.next()) {
+            subjectList.add(rs.getString("name"));
+            subjectDatabase.add(rs.getString("database_name"));
+        }
+        con.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+  //  request.setAttribute("subjectList", subjectList);
+%>
                 <p>
                   <select name="selectedexam">
-                      <option name="py" value="Python">Python</option>
-                      <option name="c" value="c">C</option>          
+                      <%
+                          for(int i=0;i<subjectList.size();i++)
+                          {
+                      %>
+                       <option name="<%=subjectList.get(i)%>" value="<%=subjectDatabase.get(i)%>"><%=subjectList.get(i)%></option>
+                       <%}%>
+                                
                   </select>        
                 </p>
                 <input type="submit" value="Start Exam" style="color:red;"><br/><br/>
