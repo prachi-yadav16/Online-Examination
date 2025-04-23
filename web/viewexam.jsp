@@ -41,7 +41,7 @@ table {
     <body>
         <jsp:include page="adminnavbar.jsp" /><br/>
         <h1 style="text-align: center;">${examsubject} Exam Set</h1><br/>
-        <sql:setDataSource var="db" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/ejproj" user="root" password="root"/>
+        <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3306/ejproj" user="root" password="root"/>
         <sql:query dataSource="${db}" var="res">
             SELECT * FROM ${examsubject};
         </sql:query>

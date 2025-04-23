@@ -39,19 +39,25 @@ nav {
                 <h1 class="display-4">Welcome Admin!</h1>
                 <p>Welcome to Online Examination System!, An online examination system for colleges and universities to conduct their exams.
                 </p>
-                <p>Please Select the Subject which you want to add questions to:
-                </p>
+                <p>Please Add the Subject which you want to have questions in:</p>
+                    <form method="post" action="AddCourseServlet">
+    <input type="text" name="newCourse" placeholder="Add new course" />
+    <button type="submit">Add Course</button><br>
+</form>  
+                
                   <form action="adminhome.jsp" method="POST">
                      
 <%
     List<String> subjectList = new ArrayList<>();
+    List<String> subjectDatabase = new ArrayList<>();
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ejproj", "root", "root");
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT name FROM subjects");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM subjects");
         while (rs.next()) {
             subjectList.add(rs.getString("name"));
+            subjectDatabase.add(rs.getString("database_name"));
         }
         con.close();
     } catch (Exception e) {
@@ -59,17 +65,19 @@ nav {
     }
   //  request.setAttribute("subjectList", subjectList);
 %>
+<br><p>Now You can Select the Subject which you want to add questions to:</p>
                 <p>
                   <select name="examsubject">
                       <%
                           for(int i=0;i<subjectList.size();i++)
                           {
                       %>
-                       <option name="<%=subjectList.get(i)%>" value="<%=subjectList.get(i)%>"><%=subjectList.get(i)%></option>
+                       <option name="<%=subjectList.get(i)%>" value="<%=subjectDatabase.get(i)%>"><%=subjectList.get(i)%></option>
                        <%}%>
                                 
                   </select>        
                 </p>
+  
                 
                 <input type="submit" value="Select Exam"><br/><br/>
                  <%
@@ -80,10 +88,7 @@ nav {
                  <p>Examination Subject to Edit: <b>${examsubject}</b></p>
                  </form>
                  <p>Once you have selected an exam to edit click on "Set Examination" to either add questions to the examination or view the exam</p>
-              <form method="post" action="AddCourseServlet">
-    <input type="text" name="newCourse" placeholder="Add new course" />
-    <button type="submit">Add Course</button>
-</form>  
+              
               </div>
                 </div>
   
