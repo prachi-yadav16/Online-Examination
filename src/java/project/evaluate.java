@@ -82,15 +82,17 @@ public class evaluate extends HttpServlet {
                   }
                }
            }
-           out.println("<h1 style=\"text-align:center;\">The Examination Has Ended</h1>");
-           out.println("<h4 style=\"text-align:center;\">Please Click on the 'Record Answers' Button below to Record them for Evaluation</h4>");
-           out.println(" <center><form method=\"POST\" action=\"setmarks.jsp\">\n" +
-"            \n" +
-"            <input type=\"hidden\" name=\"uscore\" value="+marks+">\n" +
-"            <input type=\"submit\" value=\"Record Answers\">\n" +
-"        </form>\n" +
-"    </center>");
            
+           String name = (String) session.getAttribute("name");
+          int x=statement.executeUpdate("insert into result values('"+name+"',"+marks+",'"+selectedexam+"',CURRENT_TIMESTAMP)");
+           out.println("<h1 style=\"text-align:center;\">The Examination Has Ended</h1>");
+out.println("<h2 style=\"text-align:center;\">You scored " + marks + " marks!</h2>");
+out.println("<center>");
+out.println("<form action=\"examscreen.jsp\" method=\"GET\">");
+out.println("<input type=\"submit\" value=\"Go to Home\" style=\"padding:10px 20px; font-size:16px;\">");
+out.println("</form>");
+out.println("</center>");
+
 //System.out.println(scorecounter);
         } catch (SQLException ex) {
             Logger.getLogger(evaluate.class.getName()).log(Level.SEVERE, null, ex);

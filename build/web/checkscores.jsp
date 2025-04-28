@@ -2,6 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "sql" uri = "http://java.sun.com/jsp/jstl/sql" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -46,22 +47,26 @@ table th,td{
         <h1 style="text-align: center;">Student Marks</h1><br/>
         <sql:setDataSource var="db" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/ejproj" user="root" password="root"/>
         <sql:query dataSource="${db}" var="res">
-            select * from login;
+            select * from result;
         </sql:query>
         <table border="1" class="center">
             <tr>
-                <th>ID</th>
                 <th>Username</th>
-                <th>Email</th>
+                <th>Subject</th>
                 <th>Marks</th>
+                <th>Date</th>
+                <th>Time</th>
             </tr>
             <c:forEach var="tbl" items="${res.rows}">
                 <tr>
-                    <td><c:out value="${tbl.id}"/></td>
                     <td><c:out value="${tbl.username}"/></td>
-                    <td><c:out value="${tbl.email}"/></td>
+                    <td><c:out value="${tbl.subject}"/></td>
                     <td><c:out value="${tbl.marks}"/></td>
-                </tr>
+                    <c:set var="splitDateTime" value="${fn:split(tbl.datetime, ' ')}" />
+                    <td><c:out value="${splitDateTime[0]}"/></td> <!-- This is DATE -->
+                    <td><c:out value="${splitDateTime[1]}"/></td> <!-- This is TIME -->
+
+                   </tr>
             </c:forEach>
         </table>
         
