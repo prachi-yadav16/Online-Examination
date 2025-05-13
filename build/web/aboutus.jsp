@@ -71,7 +71,7 @@ nav {
       <p>Welcome to OES!, An Online Examination System for Colleges and Universities to schedule their exams.
         If your organization faces any challenges while conducting the exams or your organization has any concerns regarding the system please contact us. 
       </p>
-      <p><a class="btn btn-primary btn-lg" href="/help" role="button">Help &raquo;</a></p>
+      <p><a class="btn btn-primary btn-lg" href="help.jsp" role="button">Help &raquo;</a></p>
     </div>
   </div>
 
@@ -80,19 +80,22 @@ nav {
     <div class="row">
       <div class="col-md-4">
         <h2>Admin</h2>
-        <p>OES provides institutions with an admin account to generate assessments and check student marks.</p>
+        <p>.Our Online Examination System (OES) is designed to provide a seamless and secure platform for conducting exams in colleges and universities. With a user-friendly interface, administrators can effortlessly create, manage, and evaluate examinations.It provides institutions with an admin account to generate assessments and check student marks.</p>
         <p><a class="btn btn-secondary" href="login.jsp" role="button">Login &raquo;</a></p>
       </div>
       <div class="col-md-4">
-        <h2>How does it Work?</h2>
-        <p>OES makes use of JSP, servlets, JSTL, expression langauge and a MySQL database to provide its examination services.</p>
-        <p><a class="btn btn-secondary" href="login.jsp" role="button">Get Started &raquo;</a></p>
+        <h2>Key Features</h2>
+        <p>  Easy Exam Management: Admins can create exams, set questions, and update exam details with just a few clicks.<br>
+Automated Evaluation: The system provides instant grading and results, saving time for both students and instructors.<br>
+Secure and Reliable: Ensuring exam integrity with authentication mechanisms and secure database management.<br>
+                    </p>
+        
       </div>
       <div class="col-md-4">
-        <h2>Terms & Conditions</h2>
-        <p>If your organization has any concerns regarding the system please click below to read our Terms and Conditions.</p>
-        <p><a class="btn btn-secondary" href="/terms" role="button">Terms & Conditions &raquo;</a></p>
-      </div>
+        <h2>Why Choose Online Examination System?</h2>
+        <p>Online Examination System leverages JSP, Servlets, JSTL, and MySQL to provide a robust, scalable, and efficient platform. Designed to streamline online assessments, it reduces paperwork and simplifies the examination process while maintaining accuracy and security.
+</p>
+       </div>
     </div>
 
     <hr>
